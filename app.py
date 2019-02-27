@@ -53,6 +53,18 @@ def delete(id):
     db.session.commit()
     return redirect('/')
 
+@app.route('/posts/<int:id>/edit')
+def edit(id):
+    post=Post.query.get(id)
+    return render_template('edit.html',post=post)
+
+@app.route('/posts/<int:id>/update')
+def update(id):
+    post=Post.query.get(id)
+    post.title=request.args.get('title')
+    post.content=request.args.get('content')
+    db.session.commit()
+    return redirect(f'/posts/{post.id}')
     
 if __name__=='__main__':
     app.run(host='0.0.0.0',port='8080',debug=True)
