@@ -37,7 +37,11 @@ def post_create():
     db.session.add(post)
     db.session.commit()
     return render_template('create.html',post=post)
-    
+
+@app.route('/posts/<int:id>')    
+def post_read(id):
+    post=Post.query.get(id)
+    return render_template('read.html',post=post)
     
 if __name__=='__main__':
     app.run(host='0.0.0.0',port='8080',debug=True)

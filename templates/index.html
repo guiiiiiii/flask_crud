@@ -4,5 +4,6 @@
 {% for post in posts %}
     <p>{{post.id}}</p>
     <p>{{post.title}}</p>
+    <a href='/posts/{{post.id}}'>글 보러가기</a>
     <hr>
 {% endfor %}
