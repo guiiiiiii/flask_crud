@@ -24,5 +24,19 @@ class Post(db.Model):
 def index():
     return render_template('index.html')
     
+@app.route('/posts/new')
+def post_new():
+    return render_template('new.html')
+ 
+@app.route('/posts/create')
+def post_create():
+    title=request.args.get('title')
+    content=request.args.get('content')
+    post=Post(title=title,content=content)
+    db.session.add(post)
+    db.session.commit()
+    return render_template('create.html',post=post)
+    
+    
 if __name__=='__main__':
     app.run(host='0.0.0.0',port='8080',debug=True)
