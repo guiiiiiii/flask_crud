@@ -29,10 +29,10 @@ def index():
 def post_new():
     return render_template('new.html')
  
-@app.route('/posts/create')
+@app.route('/posts/create',methods=['POST'])
 def post_create():
-    title=request.args.get('title')
-    content=request.args.get('content')
+    title=request.form.get('title')
+    content=request.form.get('content')
     post=Post(title=title,content=content)
     db.session.add(post)
     db.session.commit()
@@ -58,11 +58,11 @@ def edit(id):
     post=Post.query.get(id)
     return render_template('edit.html',post=post)
 
-@app.route('/posts/<int:id>/update')
+@app.route('/posts/<int:id>/update',methods=['POST'])
 def update(id):
     post=Post.query.get(id)
-    post.title=request.args.get('title')
-    post.content=request.args.get('content')
+    post.title=request.form.get('title')
+    post.content=request.form.get('content')
     db.session.commit()
     return redirect(f'/posts/{post.id}')
     

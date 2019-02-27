@@ -1,5 +1,5 @@
 <h2>{{post.id}}글 수정</h2><hr>
-<form action='/posts/{{post.id}}/update'>
+<form action='/posts/{{post.id}}/update'method='POST'>
         제목:<input type=text name='title' value={{post.title}}><br>
         내용:<textarea name='content'>{{post.content}}</textarea><br>
         <input type='submit'>
